@@ -4,7 +4,7 @@ export interface NavLink {
   view: View;
 }
 
-export type View = 'home' | 'about' | 'contact' | 'privacy' | 'rti' | 'disclosure';
+export type View = 'home' | 'about' | 'contact' | 'privacy' | 'rti' | 'disclosure' | 'handbook' | 'bug_report';
 
 export enum UserRole {
   GUEST = 'GUEST',

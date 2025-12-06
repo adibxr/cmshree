@@ -70,7 +70,14 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
                   Privacy Policy
                 </button>
               </li>
-              <li><a href="#" className="hover:text-slate-900 hover:translate-x-1 transition-all inline-block">Terms of Use</a></li>
+              <li>
+                <button 
+                  onClick={() => { onNavigate('bug_report'); window.scrollTo(0,0); }}
+                  className="hover:text-slate-900 hover:translate-x-1 transition-all inline-block text-left"
+                >
+                  Report a Bug
+                </button>
+              </li>
               <li>
                  <button 
                   onClick={() => { onNavigate('disclosure'); window.scrollTo(0,0); }}
@@ -87,7 +94,14 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
                   Right to Information
                 </button>
               </li>
-              <li><a href="#" className="hover:text-slate-900 hover:translate-x-1 transition-all inline-block">Student Handbook</a></li>
+              <li>
+                <button 
+                  onClick={() => { onNavigate('handbook'); window.scrollTo(0,0); }}
+                  className="hover:text-slate-900 hover:translate-x-1 transition-all inline-block text-left"
+                >
+                  Student Handbook
+                </button>
+              </li>
             </ul>
           </div>
 
