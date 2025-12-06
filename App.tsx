@@ -56,12 +56,79 @@ const App: React.FC = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Define valid routes for deep linking
+  const getInitialView = (): View => {
+    const path = window.location.pathname;
+    
+    // Remove trailing slash if present
+    const cleanPath = path === '/' ? '/' : path.replace(/\/$/, '');
+
+    switch (cleanPath) {
+      case '/':
+      case '/index.html':
+        return 'home';
+      case '/about':
+        return 'about';
+      case '/contact':
+        return 'contact';
+      case '/privacy':
+        return 'privacy';
+      case '/rti':
+        return 'rti';
+      case '/disclosure':
+        return 'disclosure';
+      case '/handbook':
+        return 'handbook';
+      case '/bug-report':
+        return 'bug_report';
+      default:
+        return 'not_found';
+    }
+  };
+
   useEffect(() => {
+    // Set initial view based on URL
+    const initialView = getInitialView();
+    setCurrentView(initialView);
+
     // Simulate initial resource loading
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Handle Navigation with URL updates
+  const handleNavigate = (view: View) => {
+    setCurrentView(view);
+    window.scrollTo(0, 0);
+
+    // Update URL history without reloading
+    let path = '/';
+    switch (view) {
+      case 'home': path = '/'; break;
+      case 'about': path = '/about'; break;
+      case 'contact': path = '/contact'; break;
+      case 'privacy': path = '/privacy'; break;
+      case 'rti': path = '/rti'; break;
+      case 'disclosure': path = '/disclosure'; break;
+      case 'handbook': path = '/handbook'; break;
+      case 'bug_report': path = '/bug-report'; break;
+      case 'not_found': path = '/404'; break;
+      default: path = '/';
+    }
+    
+    // Use pushState to update URL
+    window.history.pushState({}, '', path);
+  };
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+       setCurrentView(getInitialView());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const renderView = () => {
@@ -83,10 +150,9 @@ const App: React.FC = () => {
       case 'bug_report':
         return <DeveloperProfile />;
       case 'not_found':
-        return <NotFound onNavigate={setCurrentView} />;
+        return <NotFound onNavigate={handleNavigate} />;
       default:
-        // If view is unknown, show NotFound instead of defaulting to Home
-        return <NotFound onNavigate={setCurrentView} />;
+        return <NotFound onNavigate={handleNavigate} />;
     }
   };
 
@@ -100,7 +166,7 @@ const App: React.FC = () => {
       {userRole !== UserRole.ADMIN && currentView !== 'not_found' && (
         <Header 
           currentView={currentView}
-          onNavigate={setCurrentView}
+          onNavigate={handleNavigate}
           onAdminLogin={() => setIsLoginModalOpen(true)} 
           userRole={userRole}
           onLogout={() => setUserRole(UserRole.GUEST)}
@@ -115,9 +181,9 @@ const App: React.FC = () => {
         )}
       </main>
 
-      {userRole !== UserRole.ADMIN && currentView !== 'not_found' && <Footer onNavigate={setCurrentView} />}
+      {userRole !== UserRole.ADMIN && currentView !== 'not_found' && <Footer onNavigate={handleNavigate} />}
       
-      {/* Chat is available on all pages except ERP, but maybe hide on 404 to keep it clean? Let's keep it. */}
+      {/* Chat is available on all pages except ERP */}
       {userRole !== UserRole.ADMIN && <ChatWidget />}
       
       <AdminModal 
