@@ -1,23 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Safe access to API Key to prevent "process is not defined" runtime errors in browser environments
-const getApiKey = () => {
-  try {
-    if (typeof process !== 'undefined' && process.env) {
-      return process.env.API_KEY || '';
-    }
-  } catch (e) {
-    // Ignore reference errors
-  }
-  return '';
-};
-
-const apiKey = getApiKey();
-
-const ai = new GoogleGenAI({ apiKey });
-
 export const generateSchoolAnnouncement = async (topic: string, tone: 'formal' | 'cheerful' | 'urgent'): Promise<string> => {
   try {
+    // Initialize inside function to ensure environment variable is ready and to prevent stale instances
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
     const prompt = `Write a school announcement for "CM SHRI School, Sector 5 Dwarka" about: ${topic}. 
     Tone: ${tone}. 
     Keep it concise (under 100 words). 
@@ -29,13 +16,16 @@ export const generateSchoolAnnouncement = async (topic: string, tone: 'formal' |
     });
     return response.text || "Could not generate announcement.";
   } catch (error) {
-    console.error("Gemini Error:", error);
-    return "Error generating content. Please check your API key.";
+    console.error("Gemini Generate Error:", error);
+    return "Error generating content. Please check the API key configuration.";
   }
 };
 
 export const chatWithSchoolAssistant = async (message: string, history: {role: 'user' | 'model', text: string}[]): Promise<string> => {
   try {
+    // Initialize inside function to ensure environment variable is ready
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
     const systemInstruction = `You are the AI Assistant for CM SHRI School (formerly RPVV), Sector 5 Dwarka, New Delhi.
     
     **CORE SCHOOL INFORMATION:**
@@ -93,6 +83,6 @@ export const chatWithSchoolAssistant = async (message: string, history: {role: '
     return result.text || "I apologize, I didn't catch that.";
   } catch (error) {
     console.error("Gemini Chat Error:", error);
-    return "I am currently experiencing high traffic. Please try again later.";
+    return "I am currently experiencing technical difficulties connecting to the server. Please try again later.";
   }
 };

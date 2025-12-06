@@ -13,6 +13,7 @@ import DeveloperProfile from './components/DeveloperProfile';
 import AdminModal from './components/AdminModal';
 import ERPDashboard from './components/ERPDashboard';
 import ChatWidget from './components/ChatWidget';
+import NotFound from './components/NotFound';
 import { UserRole, View } from './types';
 
 // Skeleton Loader Component
@@ -81,8 +82,11 @@ const App: React.FC = () => {
         return <StudentHandbook />;
       case 'bug_report':
         return <DeveloperProfile />;
+      case 'not_found':
+        return <NotFound onNavigate={setCurrentView} />;
       default:
-        return <Home />;
+        // If view is unknown, show NotFound instead of defaulting to Home
+        return <NotFound onNavigate={setCurrentView} />;
     }
   };
 
@@ -92,8 +96,8 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans animate-fade-in-up">
-      {/* Header and Footer are hidden in ERP Admin Mode */}
-      {userRole !== UserRole.ADMIN && (
+      {/* Header and Footer are hidden in ERP Admin Mode or 404 page */}
+      {userRole !== UserRole.ADMIN && currentView !== 'not_found' && (
         <Header 
           currentView={currentView}
           onNavigate={setCurrentView}
@@ -111,9 +115,10 @@ const App: React.FC = () => {
         )}
       </main>
 
-      {userRole !== UserRole.ADMIN && <Footer onNavigate={setCurrentView} />}
+      {userRole !== UserRole.ADMIN && currentView !== 'not_found' && <Footer onNavigate={setCurrentView} />}
       
-      <ChatWidget />
+      {/* Chat is available on all pages except ERP, but maybe hide on 404 to keep it clean? Let's keep it. */}
+      {userRole !== UserRole.ADMIN && <ChatWidget />}
       
       <AdminModal 
         isOpen={isLoginModalOpen} 
