@@ -89,7 +89,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-       {/* Principal's Message Section */}
+       {/* Inspiring Excellence Section */}
        <section className="py-24 bg-slate-50 relative overflow-hidden">
         {/* Decorative pattern */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 translate-x-1/3 -translate-y-1/3"></div>
@@ -100,14 +100,14 @@ const Home: React.FC = () => {
             <div className="w-full md:w-1/2 relative group">
                <div className="absolute top-4 left-4 w-full h-full border-2 border-slate-200 rounded-[2rem] transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
                <img 
-                 src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1000&auto=format&fit=crop" 
-                 alt="Principal" 
+                 src="https://res.cloudinary.com/dztgyrv1z/image/upload/v1765126527/p2_rzvxr4.png" 
+                 alt="Ms. Rashika Shokeen" 
                  loading="lazy"
                  className="relative z-10 w-full rounded-[2rem] shadow-2xl transition-transform duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1"
                />
                <div className="absolute -bottom-6 -right-6 z-20 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 max-w-xs">
-                  <p className="font-bold text-slate-900 text-lg">Ms. Monika Batra</p>
-                  <p className="text-slate-500 text-sm">Head of School</p>
+                  <p className="font-bold text-slate-900 text-lg">Ms. Rashika Shokeen</p>
+                  <p className="text-slate-500 text-sm">English PGT</p>
                </div>
             </div>
             
