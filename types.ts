@@ -1,4 +1,3 @@
-
 export interface NavLink {
   label: string;
   view: View;
@@ -23,4 +22,5 @@ export interface AccessibilityState {
   highContrast: boolean;
   grayscale: boolean;
   readableFont: boolean;
+  highlightLinks: boolean;
 }

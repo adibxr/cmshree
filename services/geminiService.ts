@@ -2,16 +2,15 @@ import { GoogleGenAI } from "@google/genai";
 
 export const generateSchoolAnnouncement = async (topic: string, tone: 'formal' | 'cheerful' | 'urgent'): Promise<string> => {
   try {
-    // Initialize inside function to ensure environment variable is ready and to prevent stale instances
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
     const prompt = `Write a school announcement for "CM SHRI School, Sector 5 Dwarka" about: ${topic}. 
     Tone: ${tone}. 
     Keep it concise (under 100 words). 
-    Format nicely.`;
+    Format nicely with a clear subject line and body.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3-flash-preview',
       contents: prompt,
     });
     return response.text || "Could not generate announcement.";
@@ -23,55 +22,33 @@ export const generateSchoolAnnouncement = async (topic: string, tone: 'formal' |
 
 export const chatWithSchoolAssistant = async (message: string, history: {role: 'user' | 'model', text: string}[]): Promise<string> => {
   try {
-    // Initialize inside function to ensure environment variable is ready
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-    const systemInstruction = `You are the AI Assistant for CM SHRI School (formerly RPVV), Sector 5 Dwarka, New Delhi.
+    const systemInstruction = `You are the AI Assistant for CM SHRI School (formerly RPVV), Sector 5 Dwarka, New Delhi. 
+    This school is also known as Dr. B.R. Ambedkar School of Specialised Excellence (ASoSE) Sector 5.
     
     **CORE SCHOOL INFORMATION:**
-    - **Name:** CM SHRI School, Sector 5 Dwarka (Under PM SHRI Scheme).
+    - **Name:** CM SHRI School, Sector 5 Dwarka (Dr. B.R. Ambedkar ASoSE).
     - **Head of School / Principal:** Ms. Monika Batra.
     - **Address:** Sector 5, Dwarka, New Delhi - 110075.
     - **Contact:** +91 11 2508 0096 | Email: devadibxr@gmail.com.
     - **Office Hours:** Monday to Saturday, 8:00 AM - 2:30 PM.
     
     **ADMISSIONS:**
-    - Conducted via the Directorate of Education (DoE) portal.
+    - Admissions are processed through the Directorate of Education (DoE) portal.
     - Link: https://edudel.nic.in/CMSHRIApp/Home.aspx
     
-    **WEBSITE SECTIONS & FEATURES:**
-    1. **ERP Portal (Staff Only):** 
-       - Located in the header. Requires an access code.
-       - Contains modules for **Attendance** (https://adibxrreco.vercel.app) and **Issue Resources** (https://adibxrrecolabs.vercel.app).
-       - If asked about marking attendance or managing labs, direct users here.
-    
-    2. **Mandatory Disclosure:**
-       - Contains official documents: Water Health Report, Building Safety Map, Rain Water Harvesting, Fire Safety Certificate, Academic Calendar, and Fee Structure.
-    
-    3. **Student Handbook:**
-       - A digital guide available directly on the website (embedded presentation).
-    
-    4. **RTI (Right to Information):**
-       - Users can submit RTI applications and attach photos/documents via the "Right to Information" link in the footer.
-    
-    5. **Report a Bug / Developer Info:**
-       - The website is developed by **Aditya Raj** (Full Stack Developer).
-       - Users can view his profile and report technical issues via the "Report a Bug" link.
-    
-    **SOCIAL MEDIA:**
-    - **YouTube:** @asose.rpvvsec5official
-    - **Instagram:** @cmshrisec5dwarka
-    - **Facebook:** CM-SHRI-Sector-5-Dwarka
-    - **Twitter (X):** @RPVV_ASOSE_dwk5
+    **WEBSITE SECTIONS:**
+    - ERP Portal (Staff only), Mandatory Disclosure (official docs), Student Handbook, RTI, and Bug Reporting.
     
     **GUIDELINES:**
-    - Keep answers concise, professional, and helpful.
-    - If asked about specific documents (like Fire Safety), mention they are in the "Mandatory Disclosure" section.
-    - If asked about the principal, always refer to **Ms. Monika Batra**.
+    - Be helpful, polite, and concise.
+    - Always highlight the commitment to "Excellence in Specialised Education".
+    - Direct users to the "Mandatory Disclosure" section for documents like Fire Safety or Academic Calendar.
     `;
 
     const chat = ai.chats.create({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3-flash-preview',
       config: { systemInstruction },
       history: history.map(h => ({
         role: h.role,
@@ -83,6 +60,6 @@ export const chatWithSchoolAssistant = async (message: string, history: {role: '
     return result.text || "I apologize, I didn't catch that.";
   } catch (error) {
     console.error("Gemini Chat Error:", error);
-    return "I am currently experiencing technical difficulties connecting to the server. Please try again later.";
+    return "I am currently experiencing technical difficulties. Please try again later.";
   }
 };
