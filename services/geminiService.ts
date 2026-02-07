@@ -4,7 +4,7 @@ export const generateSchoolAnnouncement = async (topic: string, tone: 'formal' |
   try {
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-    const prompt = `Write a school announcement for "CM SHRI School, Sector 5 Dwarka" about: ${topic}. 
+    const prompt = `Write a school announcement for "Dr B.R. Ambedkar School of CM Shri, Sector 5 Dwarka" about: ${topic}. 
     Tone: ${tone}. 
     Keep it concise (under 100 words). 
     Format nicely with a clear subject line and body.`;
@@ -24,11 +24,11 @@ export const chatWithSchoolAssistant = async (message: string, history: {role: '
   try {
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-    const systemInstruction = `You are the AI Assistant for CM SHRI School (formerly RPVV), Sector 5 Dwarka, New Delhi. 
-    This school is also known as Dr. B.R. Ambedkar School of Specialised Excellence (ASoSE) Sector 5.
+    const systemInstruction = `You are the AI Assistant for Dr B.R. Ambedkar School of CM Shri, Sector 5 Dwarka, New Delhi. 
+    This school is a premium government aided school under DoE (Directorate of Education) Delhi.
     
     **CORE SCHOOL INFORMATION:**
-    - **Name:** CM SHRI School, Sector 5 Dwarka (Dr. B.R. Ambedkar ASoSE).
+    - **Name:** Dr B.R. Ambedkar School of CM Shri (Sector 5 Dwarka).
     - **Head of School / Principal:** Ms. Monika Batra.
     - **Address:** Sector 5, Dwarka, New Delhi - 110075.
     - **Contact:** +91 11 2508 0096 | Email: devadibxr@gmail.com.

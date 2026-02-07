@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, LayoutGrid } from 'lucide-react';
 import { NavLink, UserRole, View } from '../types';
@@ -11,7 +10,13 @@ interface Props {
   onLogout: () => void;
 }
 
-const Header: React.FC<Props> = ({ currentView, onNavigate, onAdminLogin }) => {
+const Header: React.FC<Props> = ({ 
+  currentView, 
+  onNavigate, 
+  onAdminLogin, 
+  userRole, 
+  onLogout 
+}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

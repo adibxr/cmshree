@@ -27,7 +27,7 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
             </div>
             
             <p className="text-slate-500 text-sm leading-relaxed">
-              Dr. B.R. Ambedkar School of Specialised Excellence (ASoSE) - A premium institution under the PM SHRI scheme.
+              Dr B.R. Ambedkar School of CM Shri is premium government aided school under DoE Delhi.
             </p>
 
             <div className="flex gap-2">
@@ -54,10 +54,10 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
           <div>
             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">Navigation</h3>
             <ul className="space-y-4 text-sm font-medium text-slate-600">
-              <li><button onClick={() => { onNavigate('home'); window.scrollTo(0,0); }} className="hover:text-slate-900 transition-colors">Home</button></li>
-              <li><button onClick={() => { onNavigate('about'); window.scrollTo(0,0); }} className="hover:text-slate-900 transition-colors">About Us</button></li>
-              <li><button onClick={() => { onNavigate('contact'); window.scrollTo(0,0); }} className="hover:text-slate-900 transition-colors">Contact</button></li>
               <li><button onClick={() => { onNavigate('disclosure'); window.scrollTo(0,0); }} className="hover:text-slate-900 transition-colors">Mandatory Disclosure</button></li>
+              <li><button onClick={() => { onNavigate('privacy'); window.scrollTo(0,0); }} className="hover:text-slate-900 transition-colors">Privacy Policy</button></li>
+              <li><button onClick={() => { onNavigate('rti'); window.scrollTo(0,0); }} className="hover:text-slate-900 transition-colors">RTI</button></li>
+              <li><button onClick={() => { onNavigate('bug_report'); window.scrollTo(0,0); }} className="hover:text-slate-900 transition-colors">Technical</button></li>
             </ul>
           </div>
 
@@ -105,12 +105,10 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
           </div>
         </div>
 
-        <div className="mt-20 pt-10 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+        <div className="mt-20 pt-10 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center md:text-left">
           <p>&copy; {new Date().getFullYear()} CM SHRI School Sector 5 Dwarka. All rights reserved.</p>
           <div className="flex gap-6">
-            <button onClick={() => onNavigate('privacy')} className="hover:text-slate-900 transition-colors">Privacy</button>
-            <button onClick={() => onNavigate('rti')} className="hover:text-slate-900 transition-colors">RTI</button>
-            <button onClick={() => onNavigate('bug_report')} className="hover:text-slate-900 transition-colors">Technical</button>
+            <span className="opacity-50">Excellence in Education</span>
           </div>
         </div>
       </div>

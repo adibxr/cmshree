@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Star, Book, Trophy, Quote, ArrowRight } from 'lucide-react';
 import Calendar from './Calendar';
@@ -12,7 +11,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center relative z-10">
           
           <span className="px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-xs font-bold tracking-widest uppercase mb-8 shadow-sm">
-             PM SHRI Scheme • Sector 5 Dwarka
+             DoE Delhi • Sector 5 Dwarka
           </span>
 
           <h1 className="text-5xl md:text-7xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-8 max-w-5xl">
@@ -21,7 +20,7 @@ const Home: React.FC = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-slate-600 max-w-2xl mb-10 leading-relaxed">
-            CM SHRI School, Sector 5 Dwarka offers a futuristic learning environment designed to nurture leaders of tomorrow.
+            Dr B.R. Ambedkar School of CM Shri is a premium government aided school under DoE Delhi, Sector 5 Dwarka.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-16">
