@@ -32,7 +32,7 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
 
             <div className="flex gap-2">
               {[
-                { icon: Youtube, link: "https://www.youtube.com/@asose.rpvvsec5official" },
+                { icon: Youtube, link: "https://www.youtube.com/@cmshrisec5dwarka" },
                 { icon: Facebook, link: "https://www.facebook.com/p/CM-SHRI-Sector-5-Dwarka-61553014147640/" },
                 { icon: Twitter, link: "https://x.com/RPVV_ASOSE_dwk5" },
                 { icon: Instagram, link: "https://www.instagram.com/cmshrisec5dwarka/" }
@@ -71,11 +71,11 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-slate-300 shrink-0" />
-                <span>+91 11 2508 0096</span>
+                <a href="tel:+911125080096" className="hover:text-slate-900 transition-colors">+91 11 2508 0096</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-slate-300 shrink-0" />
-                <span className="truncate">devadibxr@gmail.com</span>
+                <a href="mailto:devadibxr@gmail.com" className="truncate hover:text-slate-900 transition-colors">devadibxr@gmail.com</a>
               </li>
             </ul>
           </div>

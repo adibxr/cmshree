@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Instagram, ArrowUpRight, Youtube } from 'lucide-react';
 
@@ -31,13 +30,18 @@ const SocialHub: React.FC = () => {
                          <Youtube size={20} fill="white" />
                       </div>
                       <div>
-                        <p className="text-sm font-bold text-slate-900 leading-none">ASOSE RPVV Sec-5</p>
+                        <p className="text-sm font-bold text-slate-900 leading-none">@cmshrisec5dwarka</p>
                         <p className="text-[10px] text-slate-500">Official Channel</p>
                       </div>
                    </div>
-                   <button className="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                   <a 
+                     href="https://www.youtube.com/@cmshrisec5dwarka" 
+                     target="_blank" 
+                     rel="noreferrer"
+                     className="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider hover:bg-red-700 transition-colors"
+                   >
                      Subscribe
-                   </button>
+                   </a>
                 </div>
                 
                 {/* Content */}
@@ -45,7 +49,7 @@ const SocialHub: React.FC = () => {
                    <iframe 
                      width="100%" 
                      height="100%" 
-                     src="https://www.youtube.com/embed/videoseries?list=UU7-b12gH_X9G_9_8_0_1_2&index=0" 
+                     src="https://www.youtube.com/embed?listType=user_uploads&list=cmshrisec5dwarka" 
                      title="YouTube video player" 
                      frameBorder="0" 
                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -57,7 +61,7 @@ const SocialHub: React.FC = () => {
                 {/* Footer */}
                 <div className="p-4 border-t border-slate-100 bg-white">
                    <a 
-                     href="https://www.youtube.com/@asose.rpvvsec5official" 
+                     href="https://www.youtube.com/@cmshrisec5dwarka" 
                      target="_blank" 
                      rel="noreferrer"
                      className="block w-full text-center py-2.5 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 font-bold text-xs rounded-lg transition-colors border border-slate-200 hover:border-red-200"
